@@ -42,9 +42,19 @@ const displayStolenBike = (stolenBikes) => {
   outputDiv.innerHTML = bikesHTMLString;
 };
 
+const getCity = () => {
+  const city = document.querySelector('#area').value;
+  if (city.includes(', ')) {
+    city.replaceAll(', ', '%2C%20');
+  } else if (city.includes(' ')) {
+    city.replaceAll(' ', '%2C%20');
+  }
+  return city;
+};
+
 function handleFormSubmit(event) {
   event.preventDefault();
-  const area = document.querySelector('#area').value;
+  const area = getCity();
   const proximity = parseInt(document.querySelector('#proximity').value);
   document.querySelector('#area').value = null;
   document.querySelector('#proximity').value = '';
@@ -53,13 +63,3 @@ function handleFormSubmit(event) {
 
 
 document.querySelector('form').addEventListener('submit', handleFormSubmit);
-
-// const getCity = () => {
-//   const city = document.querySelector('#area').value;
-//   if (city.contains(', ')) {
-//     city.replaceAll(', ', '%2C%20')
-//   } else if (city.contains(' ')) {
-//   city.replaceAll(' ', '%2C%20')
-//   }
-//   return city;
-// };
