@@ -4,8 +4,9 @@ import './css/styles.css';
 
 //Business Logic
 
-const stolenBikes = () => {
-  const url = `https://bikeindex.org:443/api/v3/search?location=IP&distance=10&stolenness=stolen`;
+const stolenBikes = (area='IP', proximity) => {
+  const url = `https://bikeindex.org:443/api/v3/search?location=${area}&distance=${proximity}&stolenness=proximity`;
+  console.log(url);
   fetch(url)
     .then((response) => {
       return response.json();
@@ -23,7 +24,9 @@ const stolenBikes = () => {
       displayStolenBike(stolenBikes);
     });
 };
+//function displayError {for bad API request}
 
+//UI logic
 const displayStolenBike = (stolenBikes) => {
   const outputDiv = document.getElementById('divOutput');
   const bikesHTMLString = stolenBikes.map ( stolenBike => `
@@ -39,6 +42,24 @@ const displayStolenBike = (stolenBikes) => {
   outputDiv.innerHTML = bikesHTMLString;
 };
 
-//function displayError {for bad API request}
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const area = document.querySelector('#area').value;
+  const proximity = parseInt(document.querySelector('#proximity').value);
+  document.querySelector('#area').value = null;
+  document.querySelector('#proximity').value = '';
+  stolenBikes(area, proximity);
+}
 
-stolenBikes();
+
+document.querySelector('form').addEventListener('submit', handleFormSubmit);
+
+// const getCity = () => {
+//   const city = document.querySelector('#area').value;
+//   if (city.contains(', ')) {
+//     city.replaceAll(', ', '%2C%20')
+//   } else if (city.contains(' ')) {
+//   city.replaceAll(' ', '%2C%20')
+//   }
+//   return city;
+// };

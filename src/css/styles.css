@@ -18,3 +18,7 @@ h1 {
   width: 375px;
   height: auto;
 }
+
+form {
+  text-align: center;
+}

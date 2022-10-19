@@ -12,6 +12,15 @@
 </head>
 <body>
   <h1>Stolen Bikes Bounty Hunter</h1>
+  <div id="formDiv">
+    <form>
+      <label for="area">Enter A Location:</label>
+      <input type="text" id="area" name="area">
+      <label for="distance">Enter a Proximity</label>
+      <input type="number" id="proximity" name="proximity" min="1" max="1000">
+      <button type="submit" class="btn-success" id="bountyLocation">Get Bounties</button>
+    </form>
+  </div>
   <div id="divOutput"></div>
 </body>
 </html>
