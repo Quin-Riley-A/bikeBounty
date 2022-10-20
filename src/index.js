@@ -30,14 +30,23 @@ const stolenBikes = (area='IP', proximity) => {
 const displayStolenBike = (stolenBikes) => {
   const outputDiv = document.getElementById('divOutput');
   const bikesHTMLString = stolenBikes.map ( stolenBike => `
-  <img src="${stolenBike.image}"/>
-  <p><strong>Bike Manufacturer:</strong> ${stolenBike.bike}.
-  <br>
-  <strong>Serial Number:</strong> ${stolenBike.serial}</p>
-  <p><strong>Color(s):</strong> ${stolenBike.colors}.</p>
-  <p><strong>Status:</strong> ${stolenBike.status} in ${stolenBike.location}!</p>
-  <p><strong>Bounty:</strong> $${stolenBike.bounty}</p>
-  <hr>
+  <div class="card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="${stolenBike.image}"/>
+        <p><strong>Bike Manufacturer:</strong> ${stolenBike.bike}.
+        <br>
+        <strong>Serial Number:</strong> ${stolenBike.serial}</p>
+        <p><strong>Color(s):</strong> ${stolenBike.colors}.</p>
+        <p><strong>Status:</strong> ${stolenBike.status} in ${stolenBike.location}!</p>
+        <hr>
+      </div>
+        <div class="flip-card-back">
+          <p><strong>Bounty:</strong> $${stolenBike.bounty}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   `).join('<br>');
   outputDiv.innerHTML = bikesHTMLString;
 };
@@ -61,5 +70,11 @@ function handleFormSubmit(event) {
   stolenBikes(area, proximity);
 }
 
-
 document.querySelector('form').addEventListener('submit', handleFormSubmit);
+
+//Wednesday TODO List
+//Emoji API
+//modal implentation
+//card flip
+//default photos
+//'null' returned for location
